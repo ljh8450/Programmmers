@@ -1,7 +1,12 @@
 def solution(phone_book):
-    for i in range(len(phone_book)):
-        for j in range(len(phone_book)):
-            if i != j:
-                if phone_book[i] == phone_book[j][:len(phone_book[i])]:
-                       return False
-    return True
+    answer = True
+    hash_map = {}
+    for phone_num in phone_book:
+        hash_map[phone_num] = 1
+    for phone_num in phone_book:
+        temp = ""
+        for num in phone_num:
+            temp += num
+            if temp != phone_num and temp in hash_map:
+                answer = False
+    return answer
