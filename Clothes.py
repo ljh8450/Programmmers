@@ -1,14 +1,11 @@
-clothes = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
-answer = 1
-plus = 0
-hash_map = {}
-check_map = {}
-for i in range(len(clothes)):
-    hash_map[clothes[i][1]] = clothes[i][0]
-    check_map[clothes[i][1]] = 1
-for j in range(len(clothes)):
-    if check_map[clothes[j][1]] != 1:
-        plus += 1
-        answer *= len(check_map[clothes[j]])
-answer += plus
-print(answer)
+def solution(clothes):
+    hash_map = {}
+    for _, t in clothes:
+        if t not in hash_map:
+            hash_map[t] = 2
+        else:
+            hash_map[t] += 1
+    answer = 1
+    for i in hash_map.values():
+        answer *= i
+    return answer-1
