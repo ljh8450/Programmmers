@@ -1,17 +1,12 @@
 def solution(s):
-    answer = True
-    index = 0
-    data = [e for e in s]
-    if s[-1] == "(" or s[0] == ")" or "()" not in s:
-        return False
-    while len(data) > 0:
-        if data[index]+data[index+1] == "()":
-            data.pop(index)
-            data.pop(index)
-            index = 0
-        else:
-            index += 0
-            if data[-1] == "(" or data[0] == ")" or ("()" not in data and len(data)>0):
+    stack = []
+    
+    for c in s:
+        if c == "(": #'('면 스택에 저장.
+            stack.append(c)
+        else: # 아니면 stack에 '('가 있다면 제거해서 다음 부분 탐색. 아니면 false
+            if stack == []:
                 return False
-        print(data)
-    return True
+            else:
+                stack.pop()
+    return stack == []
