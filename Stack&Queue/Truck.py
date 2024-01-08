@@ -1,21 +1,14 @@
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    queue = list()
-    l = 0
+    queue = []
     while len(truck_weights) > 0:
-        for i in range(bridge_length):
-            if weight <= sum(truck_weights[0:i+1]):
-                l = i
-            else:
-                break
-        if len(queue) != 0:
-            queue = list()
-        if l >= len(truck_weights):
-            return answer + 1
-        queue = truck_weights[:l+1]
-        truck_weights = truck_weights[l:]
-        answer += 1
-
+        if bridge_length > len(queue):
+            queue.append(truck_weights.pop(0))
+            answer += 1
+        else:
+            queue.pop()
+            answer += 1
+    return answer
 bridge_length = 2
 weight = 10
 truck_weights = [7,4,5,6]
