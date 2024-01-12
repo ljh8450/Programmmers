@@ -1,15 +1,15 @@
 import heapq
 def solution(scoville, K):
     answer = 0
-    for _ in range(len(scoville)-1):
+    heap = []
+    for i in scoville:
+        heapq.heappush(heap, i)
+    while heap[0] < k:
         answer += 1
-        a = heapq.heappop(scoville)
-        b = heapq.heappop(scoville)
-        value = a + b*2
-        heapq.heappush(scoville, value)
-        if min(scoville) >= k:
-            return answer
-    return -1
+        heapq.heappush(heap, heapq.heappop(heap)+heapq.heappop(heap)*2)
+        if len(heap) == 1 and heap[0] < k:
+            return -1
+    return answer
 
 scoville = [1, 2, 3, 9, 10, 12]	
 k = 7
