@@ -14,6 +14,8 @@ def solution(jobs):
             now += current[0]
             answer += now-current[1]
             i += 1
+        else:
+            now += 1
     return int(answer/len(jobs))
 jobs = [[0, 3], [1, 9], [2, 6]]
 print(solution(jobs))
