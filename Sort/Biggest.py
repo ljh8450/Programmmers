@@ -1,9 +1,10 @@
 def solution(numbers):
     answer = ''
-    data = sorted(numbers, key = lambda x: -int(str(x)[0]))
-    answer
-    for i in data:
-        answer = answer + str(i)
-    return answer
-numbers = [6, 10, 2]
+    numbers = list(map(str, numbers))
+    numbers.sort(key = lambda x: x*3, reverse = True)
+    for i in numbers:
+        answer += i
+    return str(int(answer))
+
+numbers = [3, 30, 34, 5, 9]
 print(solution(numbers))
