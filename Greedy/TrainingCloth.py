@@ -1,6 +1,6 @@
 def solution(n, lost, reserve):
     lost.sort()
-    reserve.reverse()
+    reserve.sort()
 
     for i in reserve[:]:
         if i in lost:
