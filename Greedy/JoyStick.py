@@ -1,15 +1,17 @@
-def solution(n, lost, reserve):
-    lost.sort()
-    reserve.sort()
+def solution(name):
+    spell_move = 0
+    cusor_move = len(name)-1
 
-    for i in reserve[:]:
-        if i in lost:
-            reserve.remove(i)
-            lost.remove(i)
-    
-    for i in reserve:
-        if i-1 in lost:
-            lost.remove(i-1)
-        elif i+1 in lost:
-            lost.remove(i+1)
-    return n-len(lost)
+    for i, spell in enumerate(name):
+        spell_move += min(ord(spell)-ord('A'), ord('Z')-ord(spell)+1)
+
+        next = i+1
+        while next < len(name) and name[next] == 'A':
+            next += 1
+
+        cusor_move = min([cusor_move, 2*i+len(name)-next, i+2*(len(name)-next)])
+
+    return spell_move+cusor_move
+
+name = "JAN"
+print(solution(name))
